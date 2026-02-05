@@ -4,7 +4,7 @@ const db = mysql.createPool({
   host: "localhost",      
   user: "root",           
   password: "",           
-  database: "hr_system"   
+  database: "moderntech_solutions_database",   
 });
 
-export default db;
+
