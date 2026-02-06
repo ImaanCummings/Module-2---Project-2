@@ -1,12 +1,21 @@
+<<<<<<< HEAD
+=======
+// server.js
+>>>>>>> 94f23bdd2abf423178854bc78a1a2495fa4f9b54
 import express from "express";
 import cors from "cors";
 import { pool } from "./db.js";
 
+<<<<<<< HEAD
+=======
+// Import route files
+>>>>>>> 94f23bdd2abf423178854bc78a1a2495fa4f9b54
 import employeeRoutes from "./routes/employees.js";
 import payrollRoutes from "./routes/payroll.js";
 import attendanceRoutes from "./routes/attendance.js";
 import reviewRoutes from "./routes/reviews.js";
 import timeOffRoutes from "./routes/timeOff.js";
+<<<<<<< HEAD
 import leaveRoutes from "./routes/leave.js";
 
 const app = express();
@@ -27,14 +36,33 @@ app.get("/test-db", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+=======
+
+// Create Express app
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+>>>>>>> 94f23bdd2abf423178854bc78a1a2495fa4f9b54
 
 app.use("/employees", employeeRoutes);
 app.use("/payroll", payrollRoutes);
 app.use("/attendance", attendanceRoutes);
 app.use("/reviews", reviewRoutes);
 app.use("/timeoff", timeOffRoutes);
+<<<<<<< HEAD
 app.use("/leave", leaveRoutes);
 
+=======
+
+// Default route
+app.get("/", (req, res) => {
+  res.send("Welcome to the HR Management API!");
+});
+
+// Start the server
+>>>>>>> 94f23bdd2abf423178854bc78a1a2495fa4f9b54
 const PORT = 3000;
 if (process.env.NODE_ENV !== "test") {
   app.listen(PORT, () => {
