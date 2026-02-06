@@ -1,29 +1,34 @@
-// importing packages
+// server.js
 import express from "express";
 import cors from "cors";
 
-// importing routes
+// Import route files
 import employeeRoutes from "./routes/employees.js";
 import payrollRoutes from "./routes/payroll.js";
 import attendanceRoutes from "./routes/attendance.js";
 import reviewRoutes from "./routes/reviews.js";
-import timeoffRoutes from "./routes/timeoff.js";   
+import timeOffRoutes from "./routes/timeOff.js";
 
-// creating the express app
-const app = express(); 
+// Create Express app
+const app = express();
 
-// middleware
+// Middleware
 app.use(cors());
-app.use(express.json()); 
+app.use(express.json());
 
 // Routes
 app.use("/employees", employeeRoutes);
 app.use("/payroll", payrollRoutes);
 app.use("/attendance", attendanceRoutes);
 app.use("/reviews", reviewRoutes);
-app.use("/timeoff", timeoffRoutes);
+app.use("/timeoff", timeOffRoutes);
 
-// Starting the server
+// Default route
+app.get("/", (req, res) => {
+  res.send("Welcome to the HR Management API!");
+});
+
+// Start the server
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

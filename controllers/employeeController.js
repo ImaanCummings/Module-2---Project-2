@@ -4,12 +4,12 @@ import db from "../db.js";
 export const getEmployees = async (req, res) => {
   try {
     const [rows] = await db.query(`
-      SELECT 
+      SELECT
         emp_id AS id,
         first_name AS name,
         job_title AS position,
         salary_amount AS salary
-      FROM employees_table_name_here
+      FROM employees
     `);
 
     res.status(200).json(rows);
@@ -25,11 +25,8 @@ export const addEmployee = async (req, res) => {
     const { name, position, salary } = req.body;
 
     await db.query(
-      `
-      INSERT INTO employees_table_name_here 
-      (first_name, job_title, salary_amount)
-      VALUES (?, ?, ?)
-      `,
+      `INSERT INTO employees (first_name, job_title, salary_amount)
+       VALUES (?, ?, ?)`,
       [name, position, salary]
     );
 
@@ -39,3 +36,4 @@ export const addEmployee = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
