@@ -1,10 +1,9 @@
-// routes/reviews.js
 import express from "express";
+import { getReviews, addReview } from "../controllers/reviewController.js";
+
 const router = express.Router();
 
-// placeholder route
-router.get("/", (req, res) => {
-  res.json({ message: "Review routes not implemented yet" });
-});
+router.get("/", getReviews);
+router.post("/", addReview);
 
 export default router;

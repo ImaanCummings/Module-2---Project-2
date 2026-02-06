@@ -1,9 +1,10 @@
 import express from "express";
-import { getTimeOff, addTimeOff } from "../controllers/timeOffController.js";
+import { getLeaves, addLeave, updateLeaveStatus } from "../controllers/timeOffController.js";
 
 const router = express.Router();
 
-router.get("/", getTimeOff);
-router.post("/", addTimeOff);
+router.get("/", getLeaves);
+router.post("/", addLeave);
+router.patch("/:id", updateLeaveStatus);
 
 export default router;
