@@ -1,10 +1,7 @@
 import { pool } from "../db.js";
 
-
-
 export const getEmployees = async (req, res) => {
   try {
-<<<<<<< HEAD
     const [rows] = await pool.query(
       `
       SELECT
@@ -19,16 +16,6 @@ export const getEmployees = async (req, res) => {
       ORDER BY employee_id ASC
       `
     );
-=======
-    const [rows] = await db.query(`
-      SELECT
-        emp_id AS id,
-        first_name AS name,
-        job_title AS position,
-        salary_amount AS salary
-      FROM employees
-    `);
->>>>>>> 94f23bdd2abf423178854bc78a1a2495fa4f9b54
 
     res.status(200).json(rows);
   } catch (error) {
@@ -37,19 +24,10 @@ export const getEmployees = async (req, res) => {
   }
 };
 
-
 export const addEmployee = async (req, res) => {
   try {
-    const {
-      name,
-      position,
-      department,
-      salary,
-      employment_history,
-      contact,
-    } = req.body;
+    const { name, position, department, salary, employment_history, contact } = req.body;
 
-<<<<<<< HEAD
     const errors = [];
     if (!name || typeof name !== "string" || !name.trim()) {
       errors.push("'name' is required and must be a non-empty string.");
@@ -87,12 +65,6 @@ export const addEmployee = async (req, res) => {
         employment_history.trim(),
         contact.trim(),
       ]
-=======
-    await db.query(
-      `INSERT INTO employees (first_name, job_title, salary_amount)
-       VALUES (?, ?, ?)`,
-      [name, position, salary]
->>>>>>> 94f23bdd2abf423178854bc78a1a2495fa4f9b54
     );
 
     res.status(201).json({ message: "Employee added", employee_id: result.insertId });
@@ -101,4 +73,3 @@ export const addEmployee = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-

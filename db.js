@@ -2,23 +2,14 @@ import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 
 dotenv.config();
-
-<<<<<<< HEAD
 export const pool = mysql.createPool({
-  host: "localhost",      
-  user: "root",           
-  password: "",           
-  database: "moderntech_solutions_database"   
-=======
-const db = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "moderntech_solutions_database",
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME || "moderntech_solutions_database",
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
->>>>>>> 94f23bdd2abf423178854bc78a1a2495fa4f9b54
+  queueLimit: 0,
 });
 
 

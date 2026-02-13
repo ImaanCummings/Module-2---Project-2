@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { pool } from "../db.js";
 
 export const addReview = async (req, res) => {
@@ -14,9 +13,6 @@ export const addReview = async (req, res) => {
     }
     if (!review || typeof review !== "string" || !review.trim()) {
       errors.push("'review' is required and must be a non-empty string.");
-    } else if (review.length > 45) {
-    }
-    if (name && name.length > 45) {
     }
 
     if (errors.length) {
@@ -48,7 +44,7 @@ export const getReviews = async (req, res) => {
   try {
     const [rows] = await pool.query(
       `
-      SELECT 
+      SELECT
         employee_id,
         name,
         review
@@ -61,44 +57,5 @@ export const getReviews = async (req, res) => {
   } catch (error) {
     console.error("Error fetching reviews:", error);
     res.status(500).json({ error: "Failed to fetch reviews" });
-=======
-import db from "../db.js";
-
-// GET all employee reviews
-export const getReviews = async (req, res) => {
-  try {
-    const [rows] = await db.query(`
-      SELECT
-        review_id AS id,
-        emp_id AS employeeId,
-        reviewer_name AS reviewer,
-        rating,
-        comments
-      FROM reviews
-    `);
-
-    res.status(200).json(rows);
-  } catch (error) {
-    console.error("Get reviews error:", error);
-    res.status(500).json({ message: "Server error" });
-  }
-};
-
-// ADD a review
-export const addReview = async (req, res) => {
-  try {
-    const { employeeId, reviewer, rating, comments } = req.body;
-
-    await db.query(
-      `INSERT INTO reviews (emp_id, reviewer_name, rating, comments)
-       VALUES (?, ?, ?, ?)`,
-      [employeeId, reviewer, rating, comments]
-    );
-
-    res.status(201).json({ message: "Review added" });
-  } catch (error) {
-    console.error("Add review error:", error);
-    res.status(500).json({ message: "Server error" });
->>>>>>> 94f23bdd2abf423178854bc78a1a2495fa4f9b54
   }
 };
