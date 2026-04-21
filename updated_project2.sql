@@ -133,6 +133,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `reviews`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reviews` (
@@ -152,6 +153,23 @@ LOCK TABLES `reviews` WRITE;
 INSERT INTO `reviews` VALUES (1,'Sibongile Nkosi','Excellent performer, consistently meets deadl'),(2,'Lungile Moyo','Good technical skills, collaborates well with'),(3,'Thabo Molefe','Reliable team member with solid work ethic. S'),(4,'Keshav Naidoo','Outstanding communication skills. Very recept'),(5,'Zanele Khumalo','Strong analytical capabilities. Could benefit');
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(120) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `role` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

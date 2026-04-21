@@ -7,6 +7,7 @@ import attendanceRoutes from "./routes/attendance.js";
 import reviewRoutes from "./routes/reviews.js";
 import timeOffRoutes from "./routes/timeOff.js";
 import leaveRoutes from "./routes/leave.js";
+import authRoutes from "./routes/auth.js";
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use("/attendance", attendanceRoutes);
 app.use("/reviews", reviewRoutes);
 app.use("/timeoff", timeOffRoutes);
 app.use("/leave", leaveRoutes);
+app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the HR Management API!");
